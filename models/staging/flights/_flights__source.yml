@@ -1,0 +1,30 @@
+sources:
+  - name: demo_src
+    description: "Data from flights db"
+    tables:
+     - name: aircrafts
+       description: "Aircraft models"
+       columns: 
+       - name: aircraft_code
+         description: "Aircraft code"
+       - name: model
+       - name: range
+     - name: airports
+       description: "Airports"
+     - name: seats
+       description: "Seats"
+     - name: bookings
+       description: "Bookings"
+       columns:
+        - name: book_ref
+        - name: book_date
+        - name: total_amount
+       freshness:
+        warn_after:
+          count: 6
+          period: hour
+        error_after:
+          count: 1
+          period: day
+        filter: current_timestamp::date - book_date::date < 3
+       loaded_at_field: book_date::timestamp
