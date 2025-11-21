@@ -1,0 +1,6 @@
+models:
+  - name: fct_bookings
+    description: "Fact bookings"
+    docs:
+      show: true
+      node_color: red
